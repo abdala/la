@@ -1,0 +1,32 @@
+{
+    "name":        "La",
+    "type":        "library",
+    "description": "Zend Framework 1 extra libraries",
+    "keywords":    ["db","acl","helper","zf1","zf","zend"],
+    "homepage":    "http://abda.la",
+    "license":     "MIT",
+    
+    "authors": [
+        {
+            "name": "Abdala Cerqueira",
+            "homepage": "http://abda.la"
+        },
+        {
+            "name": "Anderson Chaves",
+            "homepage": "http://andersonchaves.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "La_": "src/"
+        }
+    },
+
+    "require": {
+        "php":  ">=5.3",
+        "zendframework/zendframework1": "1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.*"
+    }
+}

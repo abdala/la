@@ -2,7 +2,7 @@
     "name":        "abdala/la",
     "type":        "library",
     "description": "Zend Framework 1 extra libraries",
-    "keywords":    ["db","acl","helper","zf1","zf","zend"],
+    "keywords":    ["db","acl","validate","form","helper","zf1","zf","zend"],
     "homepage":    "http://abda.la",
     "license":     "MIT",
     
@@ -16,6 +16,7 @@
             "homepage": "http://andersonchaves.com"
         }
     ],
+    
     "autoload": {
         "psr-0": {
             "La_": "src/"

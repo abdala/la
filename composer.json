@@ -1,5 +1,5 @@
 {
-    "name":        "La",
+    "name":        "abdala/la",
     "type":        "library",
     "description": "Zend Framework 1 extra libraries",
     "keywords":    ["db","acl","helper","zf1","zf","zend"],

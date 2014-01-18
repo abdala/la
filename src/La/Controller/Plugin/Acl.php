@@ -6,21 +6,22 @@ class La_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
     
     public function preDispatch(Zend_Controller_Request_Abstract $request)
     {
-        $table     = $request->getParam('table');
-        $acl       = $this->_getAcl();
-        $identity  = Zend_Auth::getInstance()->getIdentity();
-        $role      = 'Todos';
-        $resource  = strtolower($request->getModuleName());
-        $privilege = $request->getControllerName()
-                   . self::RESOURCE_SEPARATOR
-                   . $request->getActionName();
+        $table      = $request->getParam('table');
+        $acl        = $this->_getAcl();
+        $identity   = Zend_Auth::getInstance()->getIdentity();
+        $role       = 'Todos';
+        $resource   = strtolower($request->getModuleName());
+        $controller = $request->getControllerName();
+        $privilege  = $controller
+                    . self::RESOURCE_SEPARATOR
+                    . $request->getActionName();
         
         if (isset($identity->role)) {
             $role = $identity->role;
         }
         
         if (!$acl->isAllowed($role, $resource, $privilege)) {
-            if ($resource == 'scaffold' && $table) {
+            if ($controller == 'scaffold' && $table) {
                 $privilege = $table
                            . self::RESOURCE_SEPARATOR
                            . $request->getActionName();

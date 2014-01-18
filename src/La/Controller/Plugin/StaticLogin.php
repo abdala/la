@@ -2,31 +2,23 @@
 
 class La_Controller_Plugin_StaticLogin extends Zend_Controller_Plugin_Abstract
 {
+    const RESOURCE_SEPARATOR = ":";
+    
     public function preDispatch(Zend_Controller_Request_Abstract $request)
     {
-        $session    = new Zend_Session_Namespace('login');
-        $view       = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer')->view;
-        $module     = $request->getModuleName();
-        $controller = $request->getControllerName();
-        $action     = $request->getActionName();
+        $session = new Zend_Session_Namespace('login');
         
         if (!$session->logged) {
-            if ($module == 'default' 
-                && ($controller == 'error' || $controller == 'login')) 
-            {
+            $module = $request->getModuleName();
+            $controller = $request->getControllerName();
+
+            if ($module == 'api' || $module == 'auth' || ($module == 'default' && $controller == 'error')) {
                 return true;
             }
             
-            $request->setModuleName('default')
-                    ->setControllerName('login')
+            $request->setModuleName('auth')
+                    ->setControllerName('index')
                     ->setActionName('index');
-            
-            return false;
         }
-        
-        $view->logged = $session->logged;
-        $view->module = $module;
-        $view->controller = $controller;
-        $view->action = $action;
     }
 }

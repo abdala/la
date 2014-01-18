@@ -19,7 +19,7 @@
     
     "autoload": {
         "psr-0": {
-            "La_": "src/"
+            "La": "src/"
         }
     },
 
@@ -29,5 +29,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "3.*"
-    }
+    },
+    "include-path": [
+        "src/"
+    ]
 }

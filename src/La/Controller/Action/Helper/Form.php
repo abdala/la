@@ -6,14 +6,14 @@ class La_Controller_Action_Helper_Form
     /**
      * 
      * @param La_Db_Table $table
-     * @param La_Form $form
-     * @return \La_Paginator 
+     * @param La_Form $form 
      */
     public function direct(La_Db_Table $table = null, La_Form $form = null)
     {
         $controller  = $this->getActionController();
         $id          = Zend_Filter::filterStatic($controller->getParam("id"), 'int');
         $ajaxContext = $controller->getHelper('AjaxContext');
+        $formData    = $controller->getParam("formData");
         
         $ajaxContext->addActionContext('form', 'html')
                     ->initContext();
@@ -36,6 +36,11 @@ class La_Controller_Action_Helper_Form
             } else {
                 $controller->view->data = $row;
                 $form->populate($row->toArray());
+                
+                if ($formData) {
+                    $form->populate($formData);
+                    $controller->view->messages = array($controller->getHelper('Message')->direct('ERROR', true));
+                }
             }
         }
         

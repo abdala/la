@@ -163,12 +163,14 @@ class La_Form extends ZendX_JQuery_Form
         $validatorName = (array)$validatorName;
         
         foreach ($validatorName as $validator) {
-            $validators = $this->_validators[$elementName];
+            if (isset($this->_validators[$elementName])) {
+                $validators = $this->_validators[$elementName];
             
-            foreach ($validators as $key => $value) {
-                $name = is_array($value) ? $value[0] : $value;
-                if ($name == $validator) {
-                    unset($this->_validators[$elementName][$key]);
+                foreach ($validators as $key => $value) {
+                    $name = is_array($value) ? $value[0] : $value;
+                    if ($name == $validator) {
+                        unset($this->_validators[$elementName][$key]);
+                    }
                 }
             }
         }
@@ -191,7 +193,7 @@ class La_Form extends ZendX_JQuery_Form
             parent::addElement($element[0], $name, $element[1]);
             
             $this->getElement($name)->removeDecorator('HtmlTag');
-            $this->getElement($name)->getDecorator('Label')->setOption('tag', null);
+            $this->getElement($name)->getDecorator('Label')->removeOption('tag');
             $this->getElement($name)->addDecorator(array('wrapper' => 'HtmlTag'),   
                                                    array('tag' => 'div', 'class' => 'form-group col-sm-3'));
         }
@@ -543,6 +545,16 @@ class La_Form extends ZendX_JQuery_Form
         $this->addElement($element);
         
         return $this;
+    }
+    
+    public function replaceFileElement($name)
+    {
+        $this->replaceElement(new Zend_Form_Element_File($name));
+        $decoratos = $this->getElement($name)->getDecorators();
+        
+        array_splice($decoratos, 0, 0, 'InputFile');
+        
+        $this->getElement($name)->setDecorators($decoratos);
     }
     
     public function decorateElement(Zend_Form_Element $element)

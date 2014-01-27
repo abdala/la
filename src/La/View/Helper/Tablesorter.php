@@ -44,6 +44,7 @@ class La_View_Helper_Tablesorter extends La_View_Helper_SimpleTable
             $buttonsLength = count($this->_buttons);
             $module        = $this->_module;
             $controller    = $this->_controller;
+            $action        = $this->_action;
             
             if (!$module) {
                 $module = $request->getModuleName();
@@ -51,6 +52,10 @@ class La_View_Helper_Tablesorter extends La_View_Helper_SimpleTable
             
             if (!$controller) {
                 $controller = $request->getControllerName();
+            }
+            
+            if (!$action) {
+                $action = $request->getActionName();
             }
                         
             $url = sprintf("%s/%s/delete/parent_id/%s/table/%s", $module, $controller, $this->getParentId(), $this->view->table);
@@ -151,7 +156,12 @@ class La_View_Helper_Tablesorter extends La_View_Helper_SimpleTable
                     $html .= '</tr>';
                 }
             } else {
-                $html .= sprintf('<td colspan="%d">Nenhum registro encontrado.</td>', (count($this->_headers)+1));
+                if (count($_GET)) {
+                    $allURL = sprintf("%s/%s/%s/table/%s", $module, $controller, $action, $this->view->table);
+                    $html .= sprintf('<td colspan="%d"><span style="margin-top: 15px">Nenhum registro encontrado.</span> <a class="btn btn-sm" href="%s"><i class="fa fa-list-alt"></i> Listar todos</a></td>', (count($this->_headers)+1), $allURL);
+                } else {
+                    $html .= sprintf('<td colspan="%d">Nenhum registro encontrado.</td>', (count($this->_headers)+1));
+                }
             }
 
             $html .= '</tbody>';

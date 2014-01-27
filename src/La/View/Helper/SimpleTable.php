@@ -72,6 +72,12 @@ class La_View_Helper_SimpleTable extends Zend_View_Helper_Abstract
      *
      * @var type string
      */
+    protected $_action;
+    
+    /**
+     *
+     * @var type string
+     */
     protected $_deleteUrl;
 
     /**

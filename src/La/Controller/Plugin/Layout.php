@@ -20,5 +20,6 @@ class La_Controller_Plugin_Layout extends Zend_Controller_Plugin_Abstract
         
         $view->selectId = $request->getParam('selectId');
         $view->table = $request->getParam('table');
+        $view->menu  = $request->getParam('table');
     }
 }

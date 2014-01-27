@@ -21,6 +21,12 @@ class La_View_Helper_Button
         return $this;
     }
     
+    public function setAttr($key, $value)
+    {
+        $this->_attrs[$key] = $value;
+        return $this;
+    }
+    
     public function setName($name)
     {
     	$this->_name = $name;
@@ -56,8 +62,8 @@ class La_View_Helper_Button
     public function delete($href)
     {
         $this->_name = 'Excluir selecionados'; 
-        $this->_icon = 'fa fa-ban-circle';
-        $this->_attrs['class'] = (isset($this->_attrs['class']))? $this->_attrs['class'] . ' btn btn-danger delete_all' : 'btn btn-danger delete_all';
+        $this->_icon = 'fa fa-times-circle';
+        $this->_attrs['class'] = (isset($this->_attrs['class']))? $this->_attrs['class'] . ' btn delete_all' : 'btn delete_all';
         $this->_attrs['href'] = $href;
         
         return $this;

@@ -244,6 +244,10 @@ class La_Db_Table extends Zend_Db_Table
                 continue;
             }
             
+            if ($key == "created" || $key == "updated" || $key == "deleted") {
+                continue;
+            }
+            
             if (!$value['NULLABLE']) {
                 $this->_validators[$key][] = 'NotEmpty';
             }

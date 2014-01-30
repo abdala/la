@@ -8,6 +8,8 @@ setup:
       action: "install"
       
 test:
+  php_loc:
+  lint:
   php_mess_detector:
     allow_failures: true
   php_code_sniffer:

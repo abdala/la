@@ -33,7 +33,6 @@ class La_QueryAuth_Signer extends \QueryAuth\Signer
     public function createSignature($method, $host, $path, $secret, array $params)
     {
         $data = $this->getStringData($method, $host, $path, $secret, $params);
-        file_put_contents(APPLICATION_PATH . '/../data/log/log.txt', $data . "\n", FILE_APPEND);
         return \base64_encode(\hash_hmac('sha256', $data, $secret, true));
     }
     

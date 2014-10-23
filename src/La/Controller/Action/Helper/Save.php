@@ -25,11 +25,9 @@ class La_Controller_Action_Helper_Save
      * 
      * @return object
      */
-    public function setResponseXmlHttpRequest($function)
+    public function setResponseXmlHttpRequest(callable $function)
     {
-        if (gettype($function) == 'object') {
-            $this->_responseXmlHttpRequest = $function;
-        }
+        $this->_responseXmlHttpRequest = $function;
         
         return $this;
     }

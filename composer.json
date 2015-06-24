@@ -1,5 +1,5 @@
 {
-    "name":        "abdala/la",
+    "name":        "alustau/la",
     "type":        "library",
     "description": "Zend Framework 1 extra libraries",
     "keywords":    ["db","acl","validate","form","helper","zf1","zf","zend"],
